@@ -23,9 +23,19 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                {% for food in foods %}
-                    {{ food.name }} {{ food.protein }} {{ food.carbs }} {{ food.fat }} {{ food.calories }} <br/>
-                {% endfor %}
+                <form class="form-inline" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group m-5">
+                        <label for="food_consumed"></label>
+                        <select name="food_consumed" id="food_consumed" class="form-control">
+                            {% for food in foods %}
+                                <option value="{{ food.name }}">{{ food.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success m-5">Add</button>
+                </form>
+
             </div>
         </div>
     </div>
